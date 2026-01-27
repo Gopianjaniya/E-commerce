@@ -9,6 +9,8 @@ import cartRouter from "./routes/cartRoute.js";
 import orderRouter from "./routes/orderroute.js";
 dotenv.config();
 
+connectDB();
+connectCloudinary()
 //-----App config
 const app = express();
 // const port = process.env.PORT || 4000;
