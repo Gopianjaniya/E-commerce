@@ -20,10 +20,7 @@ app.use(express.json());
 // app.use(cors());
 app.use(
   cors({
-    origin: [
-      "https://e-commerce-nu-swart.vercel.app",
-      "https://e-commerce-2pjf.vercel.app",
-    ],
+    origin: "*",
     credentials: true,
   }),
 );
