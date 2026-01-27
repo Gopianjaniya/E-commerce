@@ -19,9 +19,10 @@ app.use(express.json());
 app.use(
   cors({
     origin: [
-      "https://e-commerce-nu-swart.vercel.app", // Frontend
-      "https://your-admin-vercel-link.vercel.app", // Admin
+      "https://e-commerce-nu-swart.vercel.app",
+      "https://e-commerce-2pjf.vercel.app",
     ],
+    credentials: true,
   }),
 );
 
@@ -40,3 +41,4 @@ app.listen(port, () => {
   connectCloudinary()
   console.log(`Server running on Port : ${port}`);
 });
+export default app;

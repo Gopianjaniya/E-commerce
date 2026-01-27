@@ -13,6 +13,7 @@ export default function Login({ setToken }) {
         email,
         password,
       });
+
       if (response.data.success) {
         setToken(response.data.token);
       } else {

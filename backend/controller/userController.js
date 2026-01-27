@@ -5,16 +5,19 @@ import { createToken } from "../middleware/adminAuth.js";
 
 // -------- Route for user Login
 const loginUser = async (req, res) => {
+  console.log("........................");
   try {
     const { email, password } = req.body;
 
     // ---- find User
     const user = await userModel.findOne({ email });
+
     if (!user) {
-      res.json({ success: false, message: "User doesn't exists1111" });
+      res.json({ success: false, message: "User doesn't exists" });
     }
 
     // ----------------- compare password
+
     const isMatch = await comparePassword(password, user.password);
 
     if (isMatch) {
@@ -62,7 +65,7 @@ const registerUser = async (req, res) => {
     //--------------------- Create-Token
     const token = createToken(user._id);
 
-    res.json({ success: true,message:"Register success", token });
+    res.json({ success: true, message: "Register success", token });
   } catch (error) {
     console.log(error);
     res.json({ success: false, message: error.message });
@@ -72,20 +75,21 @@ const registerUser = async (req, res) => {
 const adminLogin = async (req, res) => {
   try {
     const { email, password } = req.body;
+
     if (
       email === process.env.ADMIN_EMAIL &&
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = createToken(
-        process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD
+        process.env.ADMIN_EMAIL + process.env.ADMIN_PASSWORD,
       );
-      res.json({ success: true, token });
+      res.status(200).json({ success: true, token });
     } else {
-      res.json({ success: false, message: "Invalid Credentials" });
+      res.status(401).json({ success: false, message: "Invalid Credentials" });
     }
   } catch (error) {
     console.log(error);
-    res.json({ success: false, message: error.message });
+    res.status(500).json({ success: false, message: error.message });
   }
 };
 
