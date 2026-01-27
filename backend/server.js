@@ -11,7 +11,7 @@ dotenv.config();
 
 //-----App config
 const app = express();
-const port = process.env.PORT || 4000;
+// const port = process.env.PORT || 4000;
 
 // ------ middleware
 app.use(express.json());
@@ -36,9 +36,9 @@ app.get("/", (req, res) => {
  return res.send("API Working.....");
 });
 
-app.listen(port, () => {
-  connectDB();
-  connectCloudinary()
-  console.log(`Server running on Port : ${port}`);
-});
+// app.listen(port, () => {
+//   connectDB();
+//   connectCloudinary()
+//   console.log(`Server running on Port : ${port}`);
+// });
 export default app;
