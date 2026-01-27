@@ -20,7 +20,10 @@ app.use(express.json());
 // app.use(cors());
 app.use(
   cors({
-    origin: "*",
+   origin: [
+"https://e-commerce-u7or.vercel.app", // frontend
+"https://e-commerce-r5vi.vercel.app" // admin (agar alag hai)
+],
     credentials: true,
   }),
 );
