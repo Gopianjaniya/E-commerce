@@ -21,6 +21,13 @@ export default function Add({ token }) {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
+       const images = [image1, image2, image3, image4];
+        for (let img of images) {
+          if (img && img.size > 2 * 1024 * 1024) {
+            toast.error("Image size 2MB se zyada hai");
+            return;
+          }
+        }
       // ----- FormData is a javascript build-in-object(strore value key-value pair)
       const formData = new FormData();
 
@@ -82,6 +89,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage1(e.target.files[0])}
                 type="file"
                 id="image1"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -100,6 +108,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage2(e.target.files[0])}
                 type="file"
                 id="image2"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -118,6 +127,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage3(e.target.files[0])}
                 type="file"
                 id="image3"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -136,6 +146,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage4(e.target.files[0])}
                 type="file"
                 id="image4"
+                accept="image/*"
                 hidden
               />
             </label>
