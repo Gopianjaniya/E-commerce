@@ -54,7 +54,7 @@ export default function Product() {
           <div className="flex gap-12 sm:gap-12 flex-col sm:flex-row">
             {/*  ------------------------ product images */}
             <div className="flex-1 flex flex-col-reverse gap-3 sm:flex-row">
-              <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full ">
+              <div className="flex sm:flex-col overflow-x-auto sm:overflow-y-scroll justify-between sm:justify-normal sm:w-[18.7%] w-full">
                 {productData?.image?.map((item, index) => (
                   <img
                     onClick={() => {
@@ -62,12 +62,12 @@ export default function Product() {
                     }}
                     src={item}
                     key={index}
-                    className="w-[24%] h-[24%] sm:w-full sm:mb-3 shrink-0 cursor-pointer "
+                    className="w-[24%] h-20 sm:h-28 sm:w-full sm:mb-3 shrink-0 cursor-pointer object-center object-cover "
                     alt=""
                   />
                 ))}
               </div>
-              <div className="w-full sm:w-[80%] h-120  ">
+              <div className="w-full h-80 sm:w-[80%] sm:h-120">
                 <img
                   className="w-full h-full object-cover object-center
               "
@@ -78,7 +78,9 @@ export default function Product() {
             </div>
             {/* =========== product info */}
             <div className="flex-1">
-              <h1 className="font-medium text-2xl mt-2">{productData.name}</h1>
+              <h1 className="font-medium text-sm sm:text-2xl mt-2">
+                {productData.name}
+              </h1>
               <div className="flex items-center gap-1 mt-2">
                 <Star
                   className="text-yellow-500 fill-yellow-500 w-3.5"
@@ -99,11 +101,11 @@ export default function Product() {
                 <Star className="text-yellow-500 w-3.5" size={20} />
                 <p className="pl-2">(122)</p>
               </div>
-              <p className="mt-5 text-3xl font-medium">
+              <p className="mt-5 text-sm sm:text-3xl font-medium">
                 {currency}
                 {productData.price}
               </p>
-              <p className="mt-5 text-gray-500 md:w-4/5">
+              <p className="mt-5 text-gray-500 md:w-4/5 text-xs sm:text-base">
                 {productData.description}
               </p>
               <div className="flex flex-col gap-4 my-8">
@@ -125,12 +127,12 @@ export default function Product() {
               </div>
               <button
                 onClick={() => addToCart(productData._id, size)}
-                className="bg-black text-white px-8 py-3 text-sm active:bg-gray-700"
+                className="bg-black text-white px-8 py-3 text-xs sm:text-sm active:bg-gray-700 rounded"
               >
                 ADD TO CART
               </button>
-              <hr className="mt-8 sm:w-4/5 border-gray-400" />
-              <div className="text-sm text-gray-500 mt-5 flex flex-col gap-1">
+              <hr className="mt-5 sm:mt-8 sm:w-4/5 border-gray-400" />
+              <div className="text-xs sm:text-sm text-gray-500 mt-5 flex flex-col gap-1">
                 <p>100% Original product.</p>
                 <p>Cash om delivery is availlable on this product</p>
                 <p>Easy return and exchange policy within 7 days.</p>
@@ -139,15 +141,15 @@ export default function Product() {
           </div>
           {/* ---------------- Description & Review Section ------------------------ */}
           <div className="mt-20">
-            <div className="flex ">
-              <b className="border px-5 py-3 text-sm   border-gray-400 ">
+            <div className="flex">
+              <b className="w-[50%] border px-5 py-3 text-xs sm:text-sm border-gray-400 ">
                 Description
               </b>
-              <p className="border px-5 py-3 text-sm   border-gray-400">
+              <p className="w-[50%] border px-5 py-3 text-xs sm:text-sm   border-gray-400">
                 Reviews (122)
               </p>
             </div>
-            <div className="flex flex-col gap-4 border px-6 py-6 text-sm text-gray-500">
+            <div className="flex flex-col gap-4 border px-6 py-6 text-xs sm:text-sm text-gray-500">
               <p>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ea
                 veritatis aperiam, laborum ut et eaque magni tempora corporis,

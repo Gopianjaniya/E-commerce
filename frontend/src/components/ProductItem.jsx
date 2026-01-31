@@ -10,7 +10,7 @@ export default function ProductItem({ id, image, name, price }) {
       <Link to={`/product/${id}`} className="text-gray-700 cursor-pointer ">
         <div className="overflow-hidden ">
           <img
-            className="hover:scale-110 transition ease-in-out w-60 h-50 object-center object-cover"
+            className="hover:scale-110 transition ease-in-out w-60 h-30 sm:h-50 object-center object-cover"
             src={image[0]}
             alt=""
           />

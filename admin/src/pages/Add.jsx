@@ -21,6 +21,13 @@ export default function Add({ token }) {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
+        const images = [image1, image2, image3, image4];
+        for (let img of images) {
+          if (img && img.size > 2 * 1024 * 1024) {
+            toast.error("Image size 2MB se zyada hai");
+            return;
+          }
+        }
       // ----- FormData is a javascript build-in-object(strore value key-value pair)
       const formData = new FormData();
 
@@ -32,15 +39,15 @@ export default function Add({ token }) {
       formData.append("bestseller", bestseller);
       formData.append("sizes", JSON.stringify(sizes));
 
-      image1 && formData.append("image1", image1);
-      image2 && formData.append("image2", image2);
-      image3 && formData.append("image3", image3);
-      image4 && formData.append("image4", image4);
+        image1 && formData.append("image1", image1);
+        image2 && formData.append("image2", image2);
+        image3 && formData.append("image3", image3);
+        image4 && formData.append("image4", image4);
 
       const response = await axios.post(
         backendUrl + "/api/product/add",
         formData,
-        { headers: { token } }
+        { headers: { token  } },
       );
       if (response.data.success) {
         toast.success(response.data.message);
@@ -82,6 +89,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage1(e.target.files[0])}
                 type="file"
                 id="image1"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -100,6 +108,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage2(e.target.files[0])}
                 type="file"
                 id="image2"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -118,6 +127,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage3(e.target.files[0])}
                 type="file"
                 id="image3"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -136,6 +146,7 @@ export default function Add({ token }) {
                 onChange={(e) => setImage4(e.target.files[0])}
                 type="file"
                 id="image4"
+                accept="image/*"
                 hidden
               />
             </label>
@@ -208,7 +219,7 @@ export default function Add({ token }) {
               setSizes((prev) =>
                 prev.includes("S")
                   ? prev.filter((item) => item !== "S")
-                  : [...prev, "S"]
+                  : [...prev, "S"],
               )
             }
           >
@@ -225,7 +236,7 @@ export default function Add({ token }) {
               setSizes((prev) =>
                 prev.includes("M")
                   ? prev.filter((item) => item !== "M")
-                  : [...prev, "M"]
+                  : [...prev, "M"],
               )
             }
           >
@@ -242,7 +253,7 @@ export default function Add({ token }) {
               setSizes((prev) =>
                 prev.includes("L")
                   ? prev.filter((item) => item !== "L")
-                  : [...prev, "L"]
+                  : [...prev, "L"],
               )
             }
           >
@@ -259,7 +270,7 @@ export default function Add({ token }) {
               setSizes((prev) =>
                 prev.includes("XL")
                   ? prev.filter((item) => item !== "XL")
-                  : [...prev, "XL"]
+                  : [...prev, "XL"],
               )
             }
           >
@@ -276,7 +287,7 @@ export default function Add({ token }) {
               setSizes((prev) =>
                 prev.includes("XXL")
                   ? prev.filter((item) => item !== "XXL")
-                  : [...prev, "XXL"]
+                  : [...prev, "XXL"],
               )
             }
           >

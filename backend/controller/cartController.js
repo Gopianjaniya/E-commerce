@@ -49,6 +49,8 @@ const updateCart = async (req, res) => {
 
 //-------------------- getuserCart
 const getUserCart = async (req, res) => {
+  console.log('...................');
+  
   try {
     console.log("get product api called");
 

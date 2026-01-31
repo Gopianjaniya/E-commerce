@@ -122,7 +122,6 @@ const ShopContextProvider = (props) => {
         toast.error(response.data.message);
       }
     } catch (error) {
-      console.log(error.message);
       toast.error(error.message);
     }
   };
@@ -141,7 +140,6 @@ const ShopContextProvider = (props) => {
         setCartItems(response.data.cartData);
       }
     } catch (error) {
-      console.log(error);
       toast.error(error.message);
     }
   };
