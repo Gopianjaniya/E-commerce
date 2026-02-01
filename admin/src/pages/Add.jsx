@@ -21,11 +21,11 @@ export default function Add({ token }) {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
+ 
         const images = [image1, image2, image3, image4];
-=======
+ 
        const images = [image1, image2, image3, image4];
->>>>>>> e089bc4906a0f13eb452647aa3359b80202b0db2
+ 
         for (let img of images) {
           if (img && img.size > 2 * 1024 * 1024) {
             toast.error("Image size 2MB se zyada hai");
