@@ -24,7 +24,7 @@ export default function Add({ token }) {
  
         const images = [image1, image2, image3, image4];
  
-       const images = [image1, image2, image3, image4];
+       
  
         for (let img of images) {
           if (img && img.size > 2 * 1024 * 1024) {
