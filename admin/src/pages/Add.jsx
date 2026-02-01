@@ -21,17 +21,14 @@ export default function Add({ token }) {
   const onSubmitHandler = async (e) => {
     e.preventDefault();
     try {
-<<<<<<< HEAD
-        const images = [image1, image2, image3, image4];
-=======
-       const images = [image1, image2, image3, image4];
->>>>>>> e089bc4906a0f13eb452647aa3359b80202b0db2
-        for (let img of images) {
-          if (img && img.size > 2 * 1024 * 1024) {
-            toast.error("Image size 2MB se zyada hai");
-            return;
-          }
+      const images = [image1, image2, image3, image4];
+
+      for (let img of images) {
+        if (img && img.size > 2 * 1024 * 1024) {
+          toast.error("Image size 2MB se zyada hai");
+          return;
         }
+      }
       // ----- FormData is a javascript build-in-object(strore value key-value pair)
       const formData = new FormData();
 
@@ -43,15 +40,15 @@ export default function Add({ token }) {
       formData.append("bestseller", bestseller);
       formData.append("sizes", JSON.stringify(sizes));
 
-        image1 && formData.append("image1", image1);
-        image2 && formData.append("image2", image2);
-        image3 && formData.append("image3", image3);
-        image4 && formData.append("image4", image4);
+      image1 && formData.append("image1", image1);
+      image2 && formData.append("image2", image2);
+      image3 && formData.append("image3", image3);
+      image4 && formData.append("image4", image4);
 
       const response = await axios.post(
         backendUrl + "/api/product/add",
         formData,
-        { headers: { token  } },
+        { headers: { token } },
       );
       if (response.data.success) {
         toast.success(response.data.message);

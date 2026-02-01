@@ -27,7 +27,6 @@ const allowedOrigins = [
 
 app.use(
   cors({
-<<<<<<< HEAD
     origin: function (origin, callback) {
       // postman / server-side requests
       if (!origin) return callback(null, true);
@@ -38,12 +37,6 @@ app.use(
         callback(new Error("CORS not allowed"));
       }
     },
-=======
-   origin: [
-"https://e-commerce-u7or.vercel.app", // frontend
-"https://e-commerce-r5vi.vercel.app" // admin (agar alag hai)
-],
->>>>>>> e089bc4906a0f13eb452647aa3359b80202b0db2
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "token"],
@@ -52,7 +45,6 @@ app.use(
 
 // preflight fix (VERY IMPORTANT)
 // app.options("*", cors());
-
 
 //  ------------ api endpints
 app.use("/api/user", userRouter);
@@ -64,16 +56,11 @@ app.get("/", (req, res) => {
   return res.send("API Working.....");
 });
 
-<<<<<<< HEAD
-app.listen(port, () => {
-  console.log(`Server running on Port : ${port}`);
-});
 // export default app;
-=======
+
 // app.listen(port, () => {
 //   connectDB();
 //   connectCloudinary()
 //   console.log(`Server running on Port : ${port}`);
 // });
 export default app;
->>>>>>> e089bc4906a0f13eb452647aa3359b80202b0db2
