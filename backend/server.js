@@ -37,6 +37,7 @@ app.use(
         callback(new Error("CORS not allowed"));
       }
     },
+
     credentials: true,
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "token"],
@@ -55,8 +56,6 @@ app.use("/api/order", orderRouter);
 app.get("/", (req, res) => {
   return res.send("API Working.....");
 });
-
-// export default app;
 
 // app.listen(port, () => {
 //   connectDB();

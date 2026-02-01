@@ -29,6 +29,7 @@ export default function Add({ token }) {
           return;
         }
       }
+
       // ----- FormData is a javascript build-in-object(strore value key-value pair)
       const formData = new FormData();
 
