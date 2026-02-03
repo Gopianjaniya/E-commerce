@@ -70,12 +70,14 @@ export default function List({ token }) {
               {currency}
               {item.price}
             </p>
-            <p
-              onClick={() => removeProduct(item._id)}
-              className="text-right md:text-center cursor-pointer text-lg"
-            >
-              X
-            </p>
+            <div className="flex justify-end">
+              <p
+                onClick={() => removeProduct(item._id)}
+                className="rounded-full flex justify-center items-center  w-8 border text-right md:text-center cursor-pointer text-lg text-white bg-red-600"
+              >
+                X
+              </p>
+            </div>
           </div>
         ))}
       </div>

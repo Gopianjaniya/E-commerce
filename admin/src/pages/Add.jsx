@@ -75,7 +75,7 @@ export default function Add({ token }) {
     >
       <div>
         <p className="mb-2">Upload Image</p>
-        <div className="flex gap-2">
+        <div className="sm:flex grid grid-cols-2 gap-x-20 gap-y-5 sm:gap-2">
           <div className="flex justify-center items-center">
             <label htmlFor="image1">
               {!image1 ? (
@@ -313,7 +313,7 @@ export default function Add({ token }) {
         />
         <label htmlFor="bestseller">Add To bestseller</label>
       </div>
-      <button type="submit" className="w-28 bg-black text-white py-3 mt-3">
+      <button type="submit" className="w-28 bg-black text-white py-3 mt-3 rounded-2xl">
         ADD
       </button>
     </form>
