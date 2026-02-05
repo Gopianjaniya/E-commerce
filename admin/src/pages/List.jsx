@@ -9,10 +9,7 @@ export default function List({ token }) {
   // ----------Function for FecthList --------------
   const fetchList = async () => {
     try {
-      console.log('..................');
-      
       const response = await axios.get(backendUrl + "/api/product/list");
-      console.log("..................",response);
 
       if (response.data.success) {
         setList(response.data.products);
@@ -30,7 +27,7 @@ export default function List({ token }) {
     try {
       const response = await axios.delete(
         `${backendUrl}/api/product/remove/${id}`,
-        { headers: { token } }
+        { headers: { token } },
       );
 
       if (response.data.success) {
