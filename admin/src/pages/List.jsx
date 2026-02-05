@@ -9,7 +9,10 @@ export default function List({ token }) {
   // ----------Function for FecthList --------------
   const fetchList = async () => {
     try {
+      console.log('..................');
+      
       const response = await axios.get(backendUrl + "/api/product/list");
+      console.log("..................",response);
 
       if (response.data.success) {
         setList(response.data.products);

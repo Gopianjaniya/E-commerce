@@ -5,8 +5,7 @@ import { createToken } from "../middleware/adminAuth.js";
 
 // -------- Route for user Login
 const loginUser = async (req, res) => {
-  console.log("........................");
-  try {
+ try {
     const { email, password } = req.body;
 
     // ---- find User

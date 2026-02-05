@@ -23,8 +23,12 @@ const allowedOrigins = [
   "http://localhost:5174",
   "https://e-commerce-u7or.vercel.app",
   "https://e-commerce-r5vi.vercel.app",
+  // "https://e-commerce-j948.vercel.app",
 ];
-
+app.use((req, res, next) => {
+  res.header("Vary", "Origin");
+  next();
+});
 app.use(
   cors({
     origin: function (origin, callback) {
@@ -45,7 +49,7 @@ app.use(
 );
 
 // preflight fix (VERY IMPORTANT)
-// app.options("*", cors());
+app.options("*", cors());
 
 //  ------------ api endpints
 app.use("/api/user", userRouter);
