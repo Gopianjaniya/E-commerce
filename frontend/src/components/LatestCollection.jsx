@@ -18,10 +18,10 @@ export default function LatestCollection() {
         <div className=" text-center py-8 text-lg sm:text-3xl">
           <Title text1={"LATEST"} text2={"COLLECTION"} />
           <p className="sm:w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam
-            impedit distinctio rerum reprehenderit quia aperiam blanditiis iure
-            quae ad architecto velit ipsa porro quibusdam facilis ut, cupiditate
-            nobis suscipit voluptatum?
+            Discover the newest arrivals in men’s fashion. From everyday casual
+            wear to sharp formal styles, our latest collection is designed for
+            comfort, confidence, and modern trends. Upgrade your wardrobe with
+            pieces that fit perfectly and stand out effortlessly.
           </p>
         </div>
         {/* Rendring Products */}
@@ -33,7 +33,6 @@ export default function LatestCollection() {
               image={item.image}
               name={item.name}
               price={item.price}
-              
             />
           ))}
         </div>

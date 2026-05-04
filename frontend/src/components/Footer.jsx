@@ -13,9 +13,10 @@ export default function Footer() {
             sizes={10}
           />
           <p className="w-full md:w-2/3 text-gray-600 ">
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Perferendis, repudiandae aliquid omnis officiis placeat nam impedit
-            eum dicta architecto tempora!
+            HappyStore is your go-to destination for stylish and affordable
+            men’s fashion. We focus on quality, comfort, and trend-driven
+            designs to help you look your best every day. Shop confidently with
+            secure payments and fast delivery.
           </p>
         </div>
         <div>

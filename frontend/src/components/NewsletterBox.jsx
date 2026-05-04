@@ -11,8 +11,9 @@ export default function NewsletterBox() {
           Subscribe now & get 20% off
         </p>
         <p className="text-gray-400 mt-3">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum in sunt
-          cum vitae nobis quibusdam.
+          Join our community and be the first to know about new arrivals,
+          exclusive deals, and special discounts. Sign up today and enjoy 20%
+          off on your first order.
         </p>
         <form
           onSubmit={onSubmitHandle}

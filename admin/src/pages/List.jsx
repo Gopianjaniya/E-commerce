@@ -10,7 +10,6 @@ export default function List({ token }) {
   const fetchList = async () => {
     try {
       const response = await axios.get(backendUrl + "/api/product/list");
-
       if (response.data.success) {
         setList(response.data.products);
       } else {

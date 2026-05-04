@@ -25,7 +25,7 @@ export default function Add({ token }) {
 
       for (let img of images) {
         if (img && img.size > 2 * 1024 * 1024) {
-          toast.error("Image size 2MB se zyada hai");
+          toast.error("Image size is greater than 2MB");
           return;
         }
       }
@@ -313,7 +313,10 @@ export default function Add({ token }) {
         />
         <label htmlFor="bestseller">Add To bestseller</label>
       </div>
-      <button type="submit" className="w-28 bg-black text-white py-3 mt-3 rounded-2xl">
+      <button
+        type="submit"
+        className="w-28 bg-black text-white py-3 mt-3 rounded-2xl"
+      >
         ADD
       </button>
     </form>

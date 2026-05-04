@@ -41,22 +41,26 @@ export default function Contact() {
             <div className="flex flex-col justify-center items-start gap-6">
               <p className="font-semibold text-xl text-gray-600">Our Store</p>
               <p className="text-gray-500">
-                54709 Willms Station <br />
-                Suite 350,Washington,USA
+                HappyStore
+                <br />
+                2nd Floor, Fashion Hub Complex <br />
+                MG Road, Indore, Madhya Pradesh, India
               </p>
               <p className="text-gray-500">
-                Tel:(415) 555-0132
+                Phone: +91 98765 43210
                 <br />
-                Email:admin@forever.com
+                Email: support@happystore.com
               </p>
               <p className="font-semibold text-xl text-gray-600">
                 Careers at Forever
               </p>
               <p className="text-gray-500">
-                Learn more about our teams and job openings.
+                We’re always looking for passionate and creative people to join
+                our growing team. If you’re interested in fashion, e-commerce,
+                or customer experience, we’d love to hear from you.
               </p>
               <button className="border border-gray-600  px-8 py-4 text-sm hover:bg-black hover:text-white transition-all duration-300">
-                Explore jobs
+                Explore Careers
               </button>{" "}
             </div>
           </div>

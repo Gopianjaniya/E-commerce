@@ -35,21 +35,23 @@ export default function About() {
             <img className="w-full md:max-w-112.5 " src={assets.about} alt="" />
             <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
               <p>
-                Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                Corrupti aspernatur necessitatibus voluptates laudantium tenetur
-                voluptatum ipsa enim recusandae, voluptatibus tempore!
-                Repellendus suscipit perspiciatis iste sint?
+                HappyStore was created with a simple goal — to make stylish and
+                affordable men’s fashion accessible to everyone. We combine
+                modern designs with comfortable fabrics to deliver outfits that
+                fit your everyday lifestyle.
               </p>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
-                quo, quam ea ex adipisci repudiandae minima porro soluta dolores
-                aliquid.
+                From casual essentials to formal wear, our collection is
+                thoughtfully curated to help you look confident on every
+                occasion. We focus on quality, fair pricing, and customer
+                satisfaction in everything we do.
               </p>
               <b>Our Mission</b>
               <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe
-                omnis error culpa? Necessitatibus illum omnis aliquid nemo,
-                incidunt eos quo!
+                Our mission is to provide trend-driven, high-quality fashion at
+                affordable prices while delivering a seamless online shopping
+                experience. We aim to become a trusted destination for men who
+                value style, comfort, and reliability.
               </p>
             </div>
           </div>
@@ -60,22 +62,29 @@ export default function About() {
             <div className="border border-gray-400 md:px-16 py-8 sm:py-20 flex flex-col items-center  justify-center gap-5">
               <b className="sm:text-lg">Quality Assurance:</b>
               <p className="text-gray-600 p-1">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-                laborum minus nisi corrupti, dolores numquam.
+                We carefully select premium fabrics and ensure every product
+                goes through strict quality checks before it reaches you. From
+                stitching to finishing, we focus on durability, comfort, and
+                long-lasting wear so you always get the best value for your
+                money.
               </p>
             </div>
             <div className="border border-gray-400 px-10 md:px-16 py-8 sm:py-20 flex flex-col  items-center  justify-center gap-5">
               <b className="sm:text-lg">Convenience:</b>
               <p className="text-gray-600">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-                laborum minus nisi corrupti, dolores numquam.
+                Enjoy a smooth and hassle-free shopping experience with easy
+                navigation, secure payments, and quick checkout. Browse, select,
+                and order your favorite styles in just a few clicks from the
+                comfort of your home.
               </p>
             </div>
             <div className="border border-gray-400 px-10 md:px-16 py-8 sm:py-20 flex flex-col  items-center  justify-center gap-5">
               <b className="sm:text-lg">Exceptional Customer Service:</b>
               <p className="text-gray-600">
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Natus
-                laborum minus nisi corrupti, dolores numquam.
+                Our support team is always ready to help you with orders,
+                returns, or any queries. We believe in building trust with our
+                customers by providing quick responses and reliable after-sales
+                support.
               </p>
             </div>
           </div>

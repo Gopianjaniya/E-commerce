@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ShopContext } from "../context/ShopContext";
-import { Star, StarHalf } from "lucide-react";
+import { Dot, Star, StarHalf } from "lucide-react";
 import RelatedProdutcs from "../components/RelatedProdutcs";
 import { motion } from "framer-motion";
 const container = {
@@ -133,15 +133,32 @@ export default function Product() {
               </button>
               <hr className="mt-5 sm:mt-8 sm:w-4/5 border-gray-400" />
               <div className="text-xs sm:text-sm text-gray-500 mt-5 flex flex-col gap-1">
-                <p>100% Original product.</p>
-                <p>Cash om delivery is availlable on this product</p>
-                <p>Easy return and exchange policy within 7 days.</p>
+                <div className="flex flex-col gap-2">
+                  <p>
+                    <span className="text-green-800 font-bold text-sm">✔</span>{" "}
+                    Premium quality breathable fabric
+                  </p>
+
+                  <p>
+                    <span className="text-green-800 font-bold text-sm">✔ </span>{" "}
+                    Cash on Delivery available across India
+                  </p>
+
+                  <p>
+                    <span className="text-green-800 font-bold text-sm">✔</span>{" "}
+                    7-day easy return & exchange
+                  </p>
+                  <p>
+                    <span className="text-green-800 font-bold text-sm">✔</span>{" "}
+                    Secure online payments
+                  </p>
+                </div>
               </div>
             </div>
           </div>
           {/* ---------------- Description & Review Section ------------------------ */}
           <div className="mt-20">
-            <div className="flex">
+            <div className="flex ">
               <b className="w-[50%] border px-5 py-3 text-xs sm:text-sm border-gray-400 ">
                 Description
               </b>
@@ -149,19 +166,19 @@ export default function Product() {
                 Reviews (122)
               </p>
             </div>
-            <div className="flex flex-col gap-4 border px-6 py-6 text-xs sm:text-sm text-gray-500">
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ea
-                veritatis aperiam, laborum ut et eaque magni tempora corporis,
-                debitis modi dolorem similique repellendus nam. Lorem ipsum
-                dolor sit amet consectetur adipisicing elit. Iure ea veritatis
-                aperiam, laborum ut et eaque magni tempora corporis, debitis
-                modi dolorem similique repellendus nam.
+            <div className="flex flex-col sm:flex-row gap-4 border px-6 py-6 text-xs sm:text-sm text-gray-500">
+              <p className="w-full">
+                Upgrade your everyday style with this premium men’s polo
+                t-shirt. Crafted from high-quality cotton blend fabric, it
+                offers superior comfort and long-lasting durability. The classic
+                polo collar and modern fit make it a versatile piece that pairs
+                perfectly with jeans, chinos, or shorts.
               </p>
-              <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Iure ea
-                veritatis aperiam, laborum ut et eaque magni tempora corporis,
-                debitis modi dolorem similique repellendus nam.
+              <p className="w-full">
+                Designed for both comfort and confidence, this t-shirt keeps you
+                cool throughout the day. Whether you're heading out with
+                friends, going to work, or enjoying a casual day out, this polo
+                ensures you always look sharp and well-dressed.
               </p>
             </div>
           </div>

@@ -18,10 +18,10 @@ export default function BestSeller() {
         <div className="text-center text-lg sm:text-3xl py-8">
           <Title text1={"BEST"} text2={"SELLER"} />
           <p className=" sm:w-3/4 m-auto text-xs sm:text-sm md:text-base text-gray-600">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Molestiae
-            dolores voluptate molestias quod velit nobis laboriosam, animi omnis
-            tempore. At repellat consectetur saepe, nam voluptates dolorem
-            molestias eaque perspiciatis quos.
+            Our best-selling styles loved by hundreds of customers. These top
+            picks combine quality fabric, modern design, and unbeatable comfort.
+            If you’re not sure what to choose, start with these customer
+            favorites.
           </p>
         </div>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 gap-y-6">
@@ -34,8 +34,6 @@ export default function BestSeller() {
               price={item.price}
             />
           ))}
-
-           
         </div>
       </div>
     </>

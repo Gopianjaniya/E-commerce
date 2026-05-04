@@ -61,6 +61,7 @@ export default function Login() {
           <p className="prata-regular text-3xl">{currentState}</p>
           <hr className="border-none h-[1.5px] w-8 bg-gray-800" />
         </div>
+        
         {currentState === "login" ? (
           ""
         ) : (
