@@ -3,94 +3,104 @@ import Title from "../components/Title";
 import { assets } from "../assets/assets";
 import NewsletterBox from "../components/NewsletterBox";
 import { motion } from "framer-motion";
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3, // pehle 0.2 tha
-    },
-  },
+import { Award, Smile, Zap } from "lucide-react";
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
-const item = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1.2, // duration badha di
-      ease: [0.22, 1, 0.36, 1],
-    },
+
+const whyUs = [
+  {
+    icon: <Award size={28} strokeWidth={1.5} />,
+    title: "Quality Assurance",
+    desc: "We carefully select premium fabrics and ensure every product passes strict quality checks before it reaches you.",
   },
-};
+  {
+    icon: <Zap size={28} strokeWidth={1.5} />,
+    title: "Convenience",
+    desc: "Enjoy a smooth shopping experience with easy navigation, secure payments, and quick checkout in just a few clicks.",
+  },
+  {
+    icon: <Smile size={28} strokeWidth={1.5} />,
+    title: "Exceptional Support",
+    desc: "Our team is always ready to help with orders, returns, or any queries. Quick responses, every time.",
+  },
+];
+
 export default function About() {
   return (
-    <motion.div variants={container} initial="hidden" animate="visible">
-      <motion.div variants={item}>
-        <div>
-          <div className="text-lg sm:text-2xl text-center border-t border-gray-400 pt-6">
-            <Title text1={"ABOUT"} text2={"US"} />
-          </div>
-          <div className="flex flex-col my-10 md:flex-row gap-8">
-            <img className="w-full md:max-w-112.5 " src={assets.about} alt="" />
-            <div className="flex flex-col justify-center gap-6 md:w-2/4 text-gray-600">
-              <p>
-                HappyStore was created with a simple goal — to make stylish and
-                affordable men’s fashion accessible to everyone. We combine
-                modern designs with comfortable fabrics to deliver outfits that
-                fit your everyday lifestyle.
-              </p>
-              <p>
-                From casual essentials to formal wear, our collection is
-                thoughtfully curated to help you look confident on every
-                occasion. We focus on quality, fair pricing, and customer
-                satisfaction in everything we do.
-              </p>
-              <b>Our Mission</b>
-              <p>
-                Our mission is to provide trend-driven, high-quality fashion at
-                affordable prices while delivering a seamless online shopping
-                experience. We aim to become a trusted destination for men who
-                value style, comfort, and reliability.
-              </p>
-            </div>
-          </div>
-          <div className="text-lg sm:text-xl py-4">
-            <Title text1={"WHY"} text2={"CHOOSE US"} />
-          </div>
-          <div className="flex flex-col sm:flex-row text-sm mb-20">
-            <div className="border border-gray-400 md:px-16 py-8 sm:py-20 flex flex-col items-center  justify-center gap-5">
-              <b className="sm:text-lg">Quality Assurance:</b>
-              <p className="text-gray-600 p-1">
-                We carefully select premium fabrics and ensure every product
-                goes through strict quality checks before it reaches you. From
-                stitching to finishing, we focus on durability, comfort, and
-                long-lasting wear so you always get the best value for your
-                money.
-              </p>
-            </div>
-            <div className="border border-gray-400 px-10 md:px-16 py-8 sm:py-20 flex flex-col  items-center  justify-center gap-5">
-              <b className="sm:text-lg">Convenience:</b>
-              <p className="text-gray-600">
-                Enjoy a smooth and hassle-free shopping experience with easy
-                navigation, secure payments, and quick checkout. Browse, select,
-                and order your favorite styles in just a few clicks from the
-                comfort of your home.
-              </p>
-            </div>
-            <div className="border border-gray-400 px-10 md:px-16 py-8 sm:py-20 flex flex-col  items-center  justify-center gap-5">
-              <b className="sm:text-lg">Exceptional Customer Service:</b>
-              <p className="text-gray-600">
-                Our support team is always ready to help you with orders,
-                returns, or any queries. We believe in building trust with our
-                customers by providing quick responses and reliable after-sales
-                support.
-              </p>
-            </div>
-          </div>
-          <NewsletterBox />
+    <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+        {/* Header */}
+        <div className="text-center mb-12">
+          <Title text1="ABOUT" text2="US" />
+          <p className="text-gray-400 text-sm mt-1">Our story, mission, and values</p>
         </div>
-      </motion.div>
+
+        {/* Story section */}
+        <div className="flex flex-col md:flex-row gap-10 mb-16 items-center">
+          <div className="md:w-1/2">
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-100 to-purple-100 rounded-3xl blur-2xl opacity-50 scale-110" />
+              <img
+                src={assets.about}
+                alt="About ApnaCart"
+                className="relative w-full rounded-3xl shadow-xl object-cover aspect-video"
+              />
+            </div>
+          </div>
+          <div className="md:w-1/2 space-y-5">
+            <h2 className="text-2xl sm:text-3xl font-bold text-gray-900">
+              Fashion for Every Story
+            </h2>
+            <p className="text-gray-500 leading-relaxed">
+              ApnaCart was created with a simple goal — to make stylish and affordable fashion
+              accessible to everyone. We combine modern designs with comfortable fabrics to deliver
+              outfits that fit your everyday lifestyle.
+            </p>
+            <p className="text-gray-500 leading-relaxed">
+              From casual essentials to formal wear, our collection is thoughtfully curated to help
+              you look confident on every occasion. We focus on quality, fair pricing, and customer
+              satisfaction in everything we do.
+            </p>
+            <div className="pt-2">
+              <h3 className="font-bold text-gray-800 mb-2">Our Mission</h3>
+              <p className="text-gray-500 leading-relaxed">
+                To provide trend-driven, high-quality fashion at affordable prices while delivering a
+                seamless shopping experience. We aim to become India's most trusted fashion destination.
+              </p>
+            </div>
+            {/* Stats */}
+            <div className="flex gap-8 pt-4">
+              {[["50K+","Customers"],["200+","Products"],["98%","Satisfaction"]].map(([n,l]) => (
+                <div key={l}>
+                  <p className="text-2xl font-extrabold gradient-text">{n}</p>
+                  <p className="text-xs text-gray-400 font-medium">{l}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Why Choose Us */}
+        <div className="mb-16">
+          <div className="text-center mb-8">
+            <Title text1="WHY" text2="CHOOSE US" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-6">
+            {whyUs.map(({ icon, title, desc }) => (
+              <div key={title} className="card p-7 text-center hover:shadow-lg transition-shadow">
+                <div className="policy-icon mx-auto mb-4">{icon}</div>
+                <h3 className="font-bold text-gray-800 mb-2">{title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <NewsletterBox />
+      </div>
     </motion.div>
   );
 }

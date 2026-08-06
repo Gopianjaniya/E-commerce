@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { loadStripe } from "@stripe/stripe-js";
-import { Elements, PaymentElement, useStripe, useElements } from "@stripe/react-stripe-js";
+import {
+  Elements,
+  PaymentElement,
+  useStripe,
+  useElements,
+} from "@stripe/react-stripe-js";
 import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import Title from "../components/Title";
+import { ShieldCheck } from "lucide-react";
 
-// Initialize Stripe outside of component render to avoid recreating Stripe object on every render
 const stripePromise = loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY || "");
 
 const CheckoutForm = ({ clientSecret, orderId }) => {
@@ -16,27 +21,20 @@ const CheckoutForm = ({ clientSecret, orderId }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!stripe || !elements) {
-      return;
-    }
-
+    if (!stripe || !elements) return;
     setIsProcessing(true);
 
     const { error, paymentIntent } = await stripe.confirmPayment({
       elements,
-      confirmParams: {
-        // Change to your actual success return URL
-        return_url: `${window.location.origin}/orders`,
-      },
-      redirect: "if_required", // Prevent automatic redirect so we can handle it manually or show success
+      confirmParams: { return_url: `${window.location.origin}/orders` },
+      redirect: "if_required",
     });
 
     if (error) {
       toast.error(error.message);
       setIsProcessing(false);
-    } else if (paymentIntent && paymentIntent.status === "succeeded") {
-      toast.success("Payment successful!");
+    } else if (paymentIntent?.status === "succeeded") {
+      toast.success("🎉 Payment successful! Your order is confirmed.");
       navigate("/orders");
     } else {
       toast.error("An unexpected error occurred.");
@@ -45,16 +43,21 @@ const CheckoutForm = ({ clientSecret, orderId }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto bg-white p-6 rounded-lg shadow-md border border-gray-200">
-      <PaymentElement id="payment-element" />
+    <form onSubmit={handleSubmit} className="card p-7 max-w-lg mx-auto">
+      <div className="flex items-center gap-2 mb-5 text-green-600 text-sm font-medium">
+        <ShieldCheck size={16} />
+        Secured by Stripe
+      </div>
+      <PaymentElement id="payment-element" className="mb-5" />
       <button
         disabled={isProcessing || !stripe || !elements}
-        id="submit"
-        className="w-full bg-black text-white py-3 px-4 rounded mt-6 font-medium disabled:opacity-50 disabled:cursor-not-allowed transition duration-200"
+        className="btn-primary w-full py-3.5 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        <span id="button-text">
-          {isProcessing ? "Processing..." : "Pay Now"}
-        </span>
+        {isProcessing ? (
+          <><span className="spinner" /> Processing Payment…</>
+        ) : (
+          "Pay Now"
+        )}
       </button>
     </form>
   );
@@ -67,42 +70,37 @@ export default function StripeCheckout() {
   const [orderId, setOrderId] = useState("");
 
   useEffect(() => {
-    // Retrieve the client secret from the location state passed from PlaceOrder
-    if (location.state && location.state.clientSecret) {
+    if (location.state?.clientSecret) {
       setClientSecret(location.state.clientSecret);
       setOrderId(location.state.orderId);
     } else {
-      // If none, redirect back
       toast.error("Payment session invalid. Please try again.");
       navigate("/cart");
     }
   }, [location, navigate]);
 
-  const appearance = {
-    theme: 'stripe',
-    variables: {
-      colorPrimary: '#000000',
+  const options = {
+    clientSecret,
+    appearance: {
+      theme: "stripe",
+      variables: { colorPrimary: "#2563eb", borderRadius: "8px" },
     },
   };
 
-  const options = {
-    clientSecret,
-    appearance,
-  };
-
   return (
-    <div className="pt-10 mb-20 min-h-[60vh]">
-      <div className="text-2xl text-center mb-8">
-        <Title text1={"SECURE"} text2={"CHECKOUT"} />
+    <div className="min-h-[70vh] flex flex-col justify-center py-12 px-4">
+      <div className="text-center mb-10">
+        <Title text1="SECURE" text2="CHECKOUT" />
+        <p className="text-gray-400 text-sm mt-1">Complete your payment securely below</p>
       </div>
-      
+
       {clientSecret ? (
         <Elements options={options} stripe={stripePromise}>
           <CheckoutForm clientSecret={clientSecret} orderId={orderId} />
         </Elements>
       ) : (
         <div className="flex justify-center items-center h-40">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-black"></div>
+          <span className="spinner scale-150" />
         </div>
       )}
     </div>

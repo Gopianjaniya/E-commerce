@@ -1,6 +1,6 @@
 import heroImage from "./heroImage.jpg";
 import contactImage from "./contactImage.jpeg";
-import logo from "./logo.jpeg";
+import logo from "./apnacart_logo.png";
 import about from "./about.jpg";
 
 // ====Winter

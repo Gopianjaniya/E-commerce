@@ -1,130 +1,127 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShopContext } from "../context/ShopContext";
 import Title from "../components/Title";
-import { Trash2Icon } from "lucide-react";
+import { Trash2, ShoppingBag, ArrowRight } from "lucide-react";
 import CartTotal from "../components/CartTotal";
 import { motion } from "framer-motion";
+import { toast } from "react-toastify";
 
-const container = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.3, // pehle 0.2 tha
-    },
-  },
+const fadeIn = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.22, 1, 0.36, 1] } },
 };
-const item = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 1.2, // duration badha di
-      ease: [0.22, 1, 0.36, 1],
-    },
-  },
-};
+
 export default function Cart() {
-  const { products, currency, cartItems, updateQuantity, navigate } =
-    useContext(ShopContext);
-
+  const { products, currency, cartItems, updateQuantity, navigate } = useContext(ShopContext);
   const [cartData, setCartData] = useState([]);
+
   useEffect(() => {
     if (products.length > 0) {
-      const tempData = [];
-      for (const items in cartItems) {
-        for (const item in cartItems[items]) {
-          if (cartItems[items][item] > 0) {
-            tempData.push({
-              _id: items,
-              size: item,
-              qty: cartItems[items][item],
-            });
-          }
+      const temp = [];
+      for (const id in cartItems) {
+        for (const size in cartItems[id]) {
+          if (cartItems[id][size] > 0) temp.push({ _id: id, size, qty: cartItems[id][size] });
         }
       }
-
-      setCartData(tempData);
+      setCartData(temp);
     }
   }, [cartItems, products]);
+
+  const handleRemove = (id, size) => {
+    updateQuantity(id, size, 0);
+    toast.info("Item removed from cart");
+  };
+
   return (
-    <motion.div variants={container} initial="hidden" animate="visible">
-      <motion.div variants={item}>
-        <div className="border-t  border-gray-400 pt-14 ">
-          <div className="text-2xl mb-3">
-            <Title text1={"YOUR"} text2={"CART"} />
+    <motion.div initial="hidden" animate="visible" variants={fadeIn}>
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+        <div className="mb-8">
+          <Title text1="YOUR" text2="CART" />
+        </div>
+
+        {cartData.length === 0 ? (
+          <div className="text-center py-24">
+            <ShoppingBag size={56} className="mx-auto text-gray-200 mb-4" />
+            <h3 className="text-lg font-semibold text-gray-500 mb-2">Your cart is empty</h3>
+            <p className="text-gray-400 text-sm mb-6">Looks like you haven't added anything yet.</p>
+            <button onClick={() => navigate("/collection")} className="btn-primary">
+              Start Shopping
+            </button>
           </div>
-          <div>
-            {cartData.map((item, index) => {
-              const productData = products.find(
-                (product) => product._id === item._id,
-              );
-              return (
-                <div
-                  key={index}
-                  className="py-4 border-t border-b border-gray-400 text-gray-700 grid grid-cols-[4fr_0.5fr] sm:grid-cols-[4fr_2fr_0.5fr] items-center gap-4"
-                >
-                  <div className="flex items-start gap-6">
+        ) : (
+          <div className="grid grid-cols-1 lg:grid-cols-[1fr_340px] gap-8">
+            {/* Items */}
+            <div className="space-y-4">
+              {cartData.map((item) => {
+                const product = products.find((p) => p._id === item._id);
+                if (!product) return null;
+                return (
+                  <div key={`${item._id}-${item.size}`} className="card p-4 flex items-center gap-4">
                     <img
-                      className="w-26 sm:w-30 h-25 sm:h-35"
-                      src={productData.image[0]}
-                      alt=""
+                      src={product.image[0]}
+                      alt={product.name}
+                      className="w-20 h-24 sm:w-24 sm:h-28 rounded-xl object-cover border border-gray-100 flex-shrink-0"
                     />
-                    <div>
-                      <p className="text-xs sm:text-lg font-medium">
-                        {productData.name}
+                    <div className="flex-1 min-w-0">
+                      <p className="font-semibold text-gray-800 text-sm sm:text-base truncate">
+                        {product.name}
                       </p>
-                      <div className="flex items-center gap-5 mt-2">
-                        <p>
-                          {currency}
-                          {productData.price}
-                        </p>
-                        <p className="px-2 sm:px-3 sm:py-1 border bg-slate-50 border-gray-300">
-                          {item.size}
-                        </p>
+                      <p className="text-blue-600 font-bold text-base mt-0.5">
+                        {currency}{product.price.toLocaleString("en-IN")}
+                      </p>
+                      <span className="inline-block mt-1 text-xs font-semibold bg-gray-100 text-gray-600 px-2.5 py-0.5 rounded-lg border border-gray-200">
+                        Size: {item.size}
+                      </span>
+                      <div className="flex items-center gap-3 mt-3">
+                        <label className="text-xs text-gray-500 font-medium">Qty:</label>
+                        <div className="flex items-center gap-1">
+                          <button
+                            onClick={() => item.qty > 1 && updateQuantity(item._id, item.size, item.qty - 1)}
+                            className="w-7 h-7 rounded-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold"
+                          >−</button>
+                          <span className="w-8 text-center text-sm font-semibold">{item.qty}</span>
+                          <button
+                            onClick={() => updateQuantity(item._id, item.size, item.qty + 1)}
+                            className="w-7 h-7 rounded-lg border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-100 font-bold"
+                          >+</button>
+                        </div>
                       </div>
                     </div>
+                    <div className="flex flex-col items-end gap-3">
+                      <p className="font-bold text-gray-800 text-sm">
+                        {currency}{(product.price * item.qty).toLocaleString("en-IN")}
+                      </p>
+                      <button
+                        onClick={() => handleRemove(item._id, item.size)}
+                        className="p-2 rounded-xl hover:bg-red-50 text-gray-400 hover:text-red-500 transition-colors"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </div>
                   </div>
-                  <input
-                    onChange={(e) =>
-                      e.target.value === "" || e.target.value === "0"
-                        ? null
-                        : updateQuantity(
-                            item._id,
-                            item.size,
-                            Number(e.target.value),
-                          )
-                    }
-                    className="border max-w-19 sm:max-w-20 px-1 sm:px-2 py-1"
-                    type="number"
-                    min={1}
-                    defaultValue={item.qty}
-                    id=""
-                  />
-                  <Trash2Icon
-                    onClick={() => updateQuantity(item._id, item.size, 0)}
-                    className="w-4 mr-4 sm:w-5 cursor-pointer"
-                  />
-                </div>
-              );
-            })}
-          </div>
-          <div className="flex justify-end my-20">
-            <div className="w-full sm:w-112.5">
+                );
+              })}
+            </div>
+
+            {/* Summary */}
+            <div className="space-y-4">
               <CartTotal />
-              <div className="w-full text-end">
-                <button
-                  onClick={() => navigate("/place-order")}
-                  className="bg-black  text-white text-sm my-8 px-8 py-3"
-                >
-                  PROCEED TO CHECKOUT
-                </button>
-              </div>
+              <button
+                onClick={() => navigate("/place-order")}
+                className="btn-primary w-full py-3.5 flex items-center justify-center gap-2"
+              >
+                Proceed to Checkout <ArrowRight size={16} />
+              </button>
+              <button
+                onClick={() => navigate("/collection")}
+                className="btn-outline w-full py-3 text-sm"
+              >
+                Continue Shopping
+              </button>
             </div>
           </div>
-        </div>
-      </motion.div>
+        )}
+      </div>
     </motion.div>
   );
 }

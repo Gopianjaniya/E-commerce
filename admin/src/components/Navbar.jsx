@@ -1,27 +1,37 @@
-import { LogOut } from "lucide-react";
+import { LogOut, Bell, Settings } from "lucide-react";
 import { assets } from "../assets/assets.js";
 
 export default function Navbar({ setToken }) {
   return (
-    <>
-      <div className="flex items-center py-2 px-[4%] justify-between">
-        <div className=" ">
-          <img
-            className="w-[max(10%,80px)] relative"
-            src={assets.logo}
-            alt=""
-          />
-          <p className=" font-bold text-xs absolute top-14 md:left-15 text-[#c586A5]">
-            ADMIN PANEL
-          </p>
+    <header className="bg-white border-b border-gray-100 shadow-sm sticky top-0 z-40">
+      <div className="flex items-center justify-between h-14 px-5">
+        {/* Brand */}
+        <div className="flex items-center gap-2.5">
+          <img src={assets.logo} className="w-8 h-8 rounded-xl object-cover" alt="Logo" />
+          <div>
+            <span className="font-bold gradient-text text-base">ApnaCart</span>
+            <span className="ml-2 text-[10px] font-bold uppercase tracking-widest text-gray-400 bg-gray-100 px-2 py-0.5 rounded-md">Admin</span>
+          </div>
         </div>
-        <button
-          onClick={() => setToken("")}
-          className="bg-gray-600 text-white  sm:py-2 px-3 py-2 sm:px-7 rounded-full text-xs sm:text-sm flex justify-center items-center "
-        >
-          Logout
-        </button>
+
+        {/* Right actions */}
+        <div className="flex items-center gap-2">
+          <button className="p-2 rounded-xl hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
+            <Bell size={18} />
+          </button>
+          <button className="p-2 rounded-xl hover:bg-gray-100 text-gray-400 hover:text-gray-600 transition-colors">
+            <Settings size={18} />
+          </button>
+          <div className="w-px h-5 bg-gray-200 mx-1" />
+          <button
+            onClick={() => setToken("")}
+            className="flex items-center gap-1.5 px-4 py-2 rounded-xl bg-red-50 hover:bg-red-100 text-red-600 text-sm font-semibold transition-colors"
+          >
+            <LogOut size={15} />
+            Logout
+          </button>
+        </div>
       </div>
-    </>
+    </header>
   );
 }

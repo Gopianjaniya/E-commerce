@@ -8,20 +8,29 @@ import Cart from "./pages/Cart";
 import Login from "./pages/Login";
 import PlaceOrder from "./pages/PlaceOrder";
 import Orders from "./pages/Orders";
+import Profile from "./pages/Profile";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import SearchBar from "./components/SearchBar";
 import StripeCheckout from "./pages/StripeCheckout";
-import { ToastContainer, toast } from "react-toastify";
-// import Verify from "./pages/Verify";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   return (
     <>
-      <div className="px-3">
-        <ToastContainer />
-        <Navbar />
-        <SearchBar />
+      <ToastContainer
+        position="top-right"
+        autoClose={2500}
+        hideProgressBar={false}
+        newestOnTop
+        closeOnClick
+        pauseOnHover
+        theme="light"
+      />
+      <Navbar />
+      <SearchBar />
+      <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/collection" element={<Collection />} />
@@ -33,10 +42,10 @@ function App() {
           <Route path="/place-order" element={<PlaceOrder />} />
           <Route path="/stripe-checkout" element={<StripeCheckout />} />
           <Route path="/orders" element={<Orders />} />
-          {/* <Route path="/verify" element={<Verify />} /> */}
+          <Route path="/profile" element={<Profile />} />
         </Routes>
-        <Footer />
-      </div>
+      </main>
+      <Footer />
     </>
   );
 }
